@@ -8,7 +8,7 @@ gem "jquery-rails"
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-#gem 'pg'
+gem 'pg'
 gem 'devise'
 
 # Use unicorn as the web server
