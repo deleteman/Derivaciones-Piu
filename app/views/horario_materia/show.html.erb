@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Materia:</b>
+  <%= @horario_materium.materia_id %>
+</p>
+
+<p>
+  <b>Dia:</b>
+  <%= @horario_materium.dia %>
+</p>
+
+<p>
+  <b>Desde:</b>
+  <%= @horario_materium.desde %>
+</p>
+
+<p>
+  <b>Hasta:</b>
+  <%= @horario_materium.hasta %>
+</p>
+
+
+<%= link_to 'Edit', edit_horario_materium_path(@horario_materium) %> |
+<%= link_to 'Back', horario_materia_path %>

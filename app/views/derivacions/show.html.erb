@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Alumno:</b>
+  <%= @derivacion.alumno_id %>
+</p>
+
+<p>
+  <b>Materia:</b>
+  <%= @derivacion.materia_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_derivacion_path(@derivacion) %> |
+<%= link_to 'Back', derivacions_path %>

@@ -1,0 +1,28 @@
+<div class="page-header">
+<h1>Listing alumnos</h1>
+</div>
+
+<div class="row">
+<table class="zebra-striped">
+  <tr>
+    <th>Nombre</th>
+    <th>Derivaciones</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @alumnos.each do |alumno| %>
+  <tr>
+    <td><%= alumno.nombre %></td>
+    <td><%= alumno.derivacions.collect{ |d| d.materia.nombre }.join("-")%></td>
+    <td><%= link_to 'Show', alumno %></td>
+    <td><%= link_to 'Edit', edit_alumno_path(alumno) %></td>
+    <td><%= link_to 'Destroy', alumno, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Alumno', new_alumno_path %>
+</div>

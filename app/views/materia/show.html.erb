@@ -1,0 +1,34 @@
+<div class="page-header">
+	<h1>Materia</h1>
+</div>
+
+<div class="row">
+	
+	<div class="span10">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @materium.nombre %>
+  <br/>
+   <b>Profesor:</b>
+	  <%= @materium.profesor.nombre if !@materium.profesor.nil?%><br/>
+	<b>Nivel:</b>
+	  <%= to_ordinal(@materium.nivel) if !@materium.nivel.nil?%>
+
+
+	<p>
+		<b>Horarios de la materia</b>
+		<ul>
+			<% @materium.horarios.each { |h| %>
+			<li><%= h.dia%> desde las <b><%=write_hour_only(h.desde)%>hs</b> hasta las <b><%=write_hour_only(h.hasta)%>hs</b></li>		
+			<% } %>
+		</ul>
+	</p>
+</p>
+
+
+<%= link_to 'Editar', edit_materium_path(@materium) %> |
+<%= link_to 'Atrás', materia_path %>
+	</div>
+</div>

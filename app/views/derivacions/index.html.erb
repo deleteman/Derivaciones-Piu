@@ -1,0 +1,48 @@
+<div class="page-header">
+<h1>Listado de Derivaciones</h1>
+</div>
+
+<div class="row">
+	<p>
+		<%= form_tag "", :method => :post do %>
+		
+		<label for="materia">Materia:</label>
+		<%= select("materium", "id", Materium.all.collect { |m| [m.nombre, m.id]})%>
+		<br/>
+		<label for="nivel">Nivel:</label>
+		<%= select_nivel %>
+		<%= submit_tag 'Filtrar', {:class => "btn primary"} %>
+		<% end %>
+	</p>
+<% if @derivacions.size > 0 %>
+	<table class="zebra-striped">
+	  <tr>
+		<th>Alumno</th>
+		<th>Materia</th>
+		<th>Nivel</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	  </tr>
+
+	<% @derivacions.each do |derivacion| %>
+	  <tr>
+		<td><%= derivacion.alumno.nombre%></td>
+		<td><%= derivacion.materia.nombre%></td>
+		<td><%= to_ordinal(derivacion.materia.nivel)%></td>
+		<td><%= link_to 'Show', derivacion %></td>
+		<td><%= link_to 'Edit', edit_derivacion_path(derivacion) %></td>
+		<td><%= link_to 'Destroy', derivacion, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+<%  else %>
+    <div class="alert-message warning text-center">
+    <p><strong>No se encontraron derivaciones</strong> <br/>Por favor, verifique el filtro y vuelva a intentarlo.</p>
+    </div>
+<% end %>
+
+<br />
+
+<%= link_to 'New Derivacion', new_derivacion_path %>
+</div>

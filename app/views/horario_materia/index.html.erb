@@ -1,0 +1,33 @@
+<div class="page-header">
+<h1>Listado de Horarios</h1>
+</div>
+
+<div class="row">
+<table class="zebra-striped">
+  <tr>
+    <th>Materia</th>
+    <th>Dia</th>
+    <th>Desde</th>
+    <th>Hasta</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @horario_materia.each do |horario_materium| %>
+  <tr>
+    <td><%= horario_materium.materia.nombre%></td>
+    <td><%= horario_materium.dia %></td>
+    <td><%= horario_materium.desde %></td>
+    <td><%= horario_materium.hasta %></td>
+    <td><%= link_to 'Show', horario_materium %></td>
+    <td><%= link_to 'Edit', edit_horario_materium_path(horario_materium) %></td>
+    <td><%= link_to 'Destroy', horario_materium, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Horario materium', new_horario_materium_path %>
+</div>

@@ -1,0 +1,21 @@
+<div class="page-header">
+	<h2>Login <small>Ingrese su e-mail y password para ingresar al sitio</small></h2>
+</div>
+
+<div class="row">
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="clear-fix"><%= f.label :email %>
+  <%= f.email_field :email %></div>
+
+  <div  class="clear-fix"><%= f.label :password %>
+  <%= f.password_field :password %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div  class="clear-fix"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  <% end -%>
+
+  <div  class="clear-fix"><%= f.submit "Sign in" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
+  </div>

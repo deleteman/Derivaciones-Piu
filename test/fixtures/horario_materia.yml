@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  materia_id: 1
+  dia: MyString
+  desde: 2011-11-11 00:23:13
+  hasta: 2011-11-11 00:23:13
+
+two:
+  materia_id: 1
+  dia: MyString
+  desde: 2011-11-11 00:23:13
+  hasta: 2011-11-11 00:23:13

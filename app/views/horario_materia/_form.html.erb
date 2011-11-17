@@ -1,0 +1,33 @@
+<%= form_for(@horario_materium) do |f| %>
+  <% if @horario_materium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@horario_materium.errors.count, "error") %> prohibited this horario_materium from being saved:</h2>
+
+      <ul>
+      <% @horario_materium.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :materia_id %>
+	<%=select("horario_materium", "materia_id", Materium.all.collect { |m| [m.nombre, m.id]} ) %>
+  </div>
+  <div class="field">
+    <%= f.label :dia %>
+    <%= f.text_field :dia %>
+  </div>
+  <div class="field">
+    <%= f.label :desde %>
+    <%= f.time_select :desde %>
+  </div>
+  <div class="field">
+    <%= f.label :hasta %>
+    <%= f.time_select :hasta %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

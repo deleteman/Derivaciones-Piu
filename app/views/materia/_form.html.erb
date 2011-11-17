@@ -1,0 +1,44 @@
+<%= form_for(@materium) do |f| %>
+  <% if @materium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@materium.errors.count, "error") %> prohiben a esta materia de ser guardada:</h2>
+
+      <ul>
+      <% @materium.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :nivel%>
+    <%= select_tag("materium[nivel]", '<option value="1">1ero</option><option value="2">2do</option><option value="3">3ero</option>'.html_safe)%>
+  </div>
+
+  <div class="field">
+    <%= f.label :profesor%>
+    <%= select("materium", "profesor_id", Profesor.all.collect { |p| [p.nombre, p.id]}) %>
+  </div>
+
+  <div class="field">
+    <h2><%= f.label :horarios%></h2>
+	  <div class="clear-fix">
+		<% f.fields_for :horario_materia do |builder| %>
+		  <%=render 'horarios' , :f => builder%>
+	 	<% end %>
+		  <%= link_to_add_fields "Agregar horario", f, :horario_materia %>
+	  </div>
+
+
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

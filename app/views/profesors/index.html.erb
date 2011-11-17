@@ -1,0 +1,28 @@
+<div class="page-header">
+<h1>Listado de profesores</h1>
+</div>
+
+<div class="row">
+<table class="zebra-striped">
+  <tr>
+    <th>Nombre</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @profesors.each do |profesor| %>
+  <tr>
+    <td><%= profesor.nombre %></td>
+    <td><%= link_to 'Show', profesor %></td>
+    <td><%= link_to 'Edit', edit_profesor_path(profesor) %></td>
+    <td><%= link_to 'Destroy', profesor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Profesor', new_profesor_path %>
+
+</div>
