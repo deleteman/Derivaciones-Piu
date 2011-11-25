@@ -1,9 +1,11 @@
 class ChangeHorarioMaterium < ActiveRecord::Migration
   def self.up
-	change_column :horario_materia, :dia, :date
+	remove_column :horario_materia, :dia
+	add_column :horario_materia, :dia, :date
   end
 
   def self.down
-	change_column :horario_materia, :dia, :string
+	remove_column :horario_materia, :dia
+	add_column :horario_materia, :dia, :string
   end
 end
