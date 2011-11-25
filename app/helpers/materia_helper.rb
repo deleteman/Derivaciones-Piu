@@ -1,9 +1,5 @@
 module MateriaHelper
 
-	def write_hour_only date_val
-		date_val.hour.to_s + ":" + date_val.min.to_s
-	end
-
 	def to_ordinal n
 		ordinal = ""
 		if n == 1

@@ -1,5 +1,9 @@
 <div class="page-header">
-<h1>Listado de materias</h1>
+<h1>Listado de materias 
+	<small>
+		<%= link_to 'Agregar materia+', new_materium_path %>
+	</small>
+</h1>
 </div>
 
 <div class="row">
@@ -17,7 +21,7 @@
   <tr>
     <td><%= materium.nombre %></td>
     <td><%= to_ordinal(materium.nivel)%></td>
-    <td><%=materium.horarios.collect {|h| h.dia }.join("-") %>
+    <td><%=materium.horarios.collect {|h| format_latin_date(h.dia) }.join(" - ") %>
     <td><%=materium.profesor.nombre if !materium.profesor.nil?%>
 	</td>
     <td><%= link_to 'Show', materium %></td>
@@ -29,5 +33,4 @@
 
 <br />
 
-<%= link_to 'New Materium', new_materium_path %>
 </div>

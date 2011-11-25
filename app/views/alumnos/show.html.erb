@@ -1,31 +1,30 @@
 <p id="notice"><%= notice %></p>
 <div class="page-header">
-	<h1>Detalles del alumno</h1>
+	<h1>Detalles del alumno: <small><%=@alumno.nombre%></small></h1>
 </div>
 
 <div class="row">
-<p>
-  <b>Nombre:</b>
-  <%= @alumno.nombre %>
-</p>
 <p>
 
 	<% 
 	@alumno.derivacions.each {|d| %>
 		<div class="derivacion">
-			Para preparar el examen de la materia <%=d.materia.nombre%> debo asistir los siguientes días:<br/>
+			Para preparar el examen de la materia <b><%=d.materia.nombre%></b> debo asistir los siguientes días (con mi cédula de identidad):<br/>
 			<ul>	
 			<% d.materia.horarios.each { |h|  %>
-				<li><%=h.dia%> desde las <%=h.desde%> hasta las <%=h.hasta%>
+				<li><%=format_latin_date(h.dia)%> desde las <b><%=write_hour_only(h.desde)%></b> hasta las <b><%=write_hour_only(h.hasta)%></b>
 			<% } if !d.materia.nil? %>	
-				</ul>
+			</ul>
+			<% if !d.materia.exam.nil? %>
+				Para rendir el examen, deberé presentarme el <%=format_latin_date(d.materia.exam.fecha)%> a las <%=write_hour_only(d.materia.exam.hora)%>
+			<% end %>
 		</div>
 	<% } %>
 
 </p>
 
 
-<%= link_to 'Edit', edit_alumno_path(@alumno) %> |
-<%= link_to 'Back', alumnos_path %>
+<%= link_to 'Editar', edit_alumno_path(@alumno) %> |
+<%= link_to 'Volver al listado', alumnos_path %>
 
 </div>

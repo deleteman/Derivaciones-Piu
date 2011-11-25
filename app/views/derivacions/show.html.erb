@@ -1,15 +1,30 @@
-<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+	<h1>Detalles de la derivacion</h1>
+</div>
+
+<div class="row">
+<% if !notice.nil? %>
+<div class="alert-message success">
+	<a class="close" href="#">×</a>
+	<p>
+<%= notice %>
+	</p>
+</div>
+<% end %>
+
 
 <p>
   <b>Alumno:</b>
-  <%= @derivacion.alumno_id %>
+  <%= @derivacion.alumno.nombre%>
 </p>
 
 <p>
   <b>Materia:</b>
-  <%= @derivacion.materia_id %>
+  <%= @derivacion.materia.nombre %>
 </p>
 
 
-<%= link_to 'Edit', edit_derivacion_path(@derivacion) %> |
-<%= link_to 'Back', derivacions_path %>
+<%= link_to 'Editar', edit_derivacion_path(@derivacion) %> |
+<%= link_to 'Volver al listado', derivacions_path %>
+</div>

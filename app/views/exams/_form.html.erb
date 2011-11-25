@@ -1,0 +1,22 @@
+<%= form_for(@exam) do |f| %>
+  <% if @exam.errors.any? %>
+	<%= render :partial => 'layouts/error_list', :locals => {:errors => @exam.errors} %>
+      <% end %>
+
+  <div class="field clearfix">
+    <%= f.label :materia_id %><br />
+    <%= select("exam", "materia_id", Materium.all(:order => [:nombre, :nivel]).collect { |p| [p.nombre + " (" + to_ordinal(p.nivel) + ")", p.id]}) %>
+  </div>
+  <div class="field clearfix">
+    <%= f.label :fecha %><br />
+    <%#= f.date_select :fecha %>
+    <%= f.text_field :fecha, {:class => "date-picker"} %>
+  </div>
+  <div class="field clearfix">
+    <%= f.label :hora %><br />
+    <%= f.time_select :hora %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar", {:class => "btn primary"}%>
+  </div>
+<% end %>

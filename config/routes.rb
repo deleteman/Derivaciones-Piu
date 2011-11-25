@@ -1,5 +1,9 @@
 Derivaciones::Application.routes.draw do
+  resources :exams
+
   devise_for :users
+
+	#resources :users
 
   resources :derivacions
 
@@ -18,6 +22,12 @@ Derivaciones::Application.routes.draw do
   match 'materias' => 'materia#index'
   match 'horarios' => 'horario_materia#index'
   match 'derivaciones' => 'derivacions#index'
+  match 'sinaprovar' => 'users#index'
+  match 'user/edit.:id' => 'users#edit'
+  match 'user/approve/:id' => 'users#approve'
+
+
+	resource :user
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

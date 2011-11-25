@@ -1,7 +1,9 @@
-<p class="fields">
-<%= f.text_field :dia,{:class => "date-picker"} %>
-<%= f.number_field :desde, {:class => "time-picker" }%>
-<%= f.number_field :hasta, {:class => "time-picker" } %>
+<p class="fields fecha-hora-materia">
+	<br>
+<%= f.text_field :dia,{:class => "date-picker"} %><br/>
+<%= f.time_select :desde, {:class => "time-picker" }%><br/>
+<%= f.time_select :hasta, {:class => "time-picker" } %><br/>
 <%= f.hidden_field :_destroy %>
 <%= link_to_function "remove", "remove_fields(this)" %>
 </p>	
+<div class="clearfix"></div>

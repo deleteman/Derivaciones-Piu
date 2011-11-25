@@ -11,7 +11,8 @@ class DerivacionsController < ApplicationController
 		if !params[:materium][:id].nil?
 			#@derivacions = Derivacion.find_all_by_nivel(params[:nivel])
 			@materium = Materium.find(params[:materium][:id])
-			@derivacions = Derivacion.joins("join materia on materia.id = derivacions.materia_id").where(:materia_id => params[:materium][:id]).where({:materia => {:nivel => params[:materium][:nivel]}})
+
+			@derivacions = Derivacion.joins("join materia on materia.id = derivacions.materia_id").where(:materia_id => params[:materium][:id])
 		end
 	else
     	@derivacions = Derivacion.all

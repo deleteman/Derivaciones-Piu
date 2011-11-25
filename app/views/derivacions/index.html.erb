@@ -1,5 +1,7 @@
 <div class="page-header">
-<h1>Listado de Derivaciones</h1>
+<h1>Listado de Derivaciones
+	<small> <%= link_to 'Derivar alumno', new_derivacion_path %></small>
+</h1>
 </div>
 
 <div class="row">
@@ -7,10 +9,11 @@
 		<%= form_tag "", :method => :post do %>
 		
 		<label for="materia">Materia:</label>
-		<%= select("materium", "id", Materium.all.collect { |m| [m.nombre, m.id]})%>
-		<br/>
+		<%= select("materium", "id", Materium.all(:order => [:nombre, :nivel]).collect { |m| [m.nombre + " (" + to_ordinal(m.nivel) + ")", m.id]})%>
+		<!--<br/>
 		<label for="nivel">Nivel:</label>
 		<%= select_nivel %>
+-->
 		<%= submit_tag 'Filtrar', {:class => "btn primary"} %>
 		<% end %>
 	</p>
@@ -30,9 +33,9 @@
 		<td><%= derivacion.alumno.nombre%></td>
 		<td><%= derivacion.materia.nombre%></td>
 		<td><%= to_ordinal(derivacion.materia.nivel)%></td>
-		<td><%= link_to 'Show', derivacion %></td>
-		<td><%= link_to 'Edit', edit_derivacion_path(derivacion) %></td>
-		<td><%= link_to 'Destroy', derivacion, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= link_to 'Ver detalles', derivacion.alumno %></td>
+		<td><%= link_to 'Editar', edit_derivacion_path(derivacion) %></td>
+		<td><%= link_to 'Borrar', derivacion, :confirm => 'Está seguro?', :method => :delete %></td>
 	  </tr>
 	<% end %>
 	</table>
@@ -44,5 +47,5 @@
 
 <br />
 
-<%= link_to 'New Derivacion', new_derivacion_path %>
+
 </div>

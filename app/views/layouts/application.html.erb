@@ -11,24 +11,38 @@
 		<div class="topbar" >
 			<div class="fill">
 				<div class="container" >
-					<a class="brand" href="/" >Derivaciones </a>
+					<a class="brand" href="/" >Derivaciones P.I.U.</a>
 			<% if user_signed_in? %>
 					<ul class="nav">
-						<li><a href="/profesores">Profesores</a></li>
-						<li><a href="/materias">Materias</a></li>
-						<li><a href="/horario_materia">Horarios</a></li>
+
 						<li><a href="/alumnos">Alumnos</a></li>
 						<li><a href="/derivaciones">Derivaciones</a></li>
+						<li><a href="/profesores">Profesores</a></li>
+						<li><a href="/materias">Materias</a></li>
+						<li><a href="/exams">Examenes</a></li>
+						<li>
+							<%= link_to " - Salir", destroy_user_session_path, {:method => :delete, :class => "logout-link"}%>
+							
+						</li>
 					</ul>
-					<%= link_to "Salir", destroy_user_session_path, :method => :delete%>
 			<% end  %>
 				</div>
 			</div>
 		</div>
 	<div class="container">
 		<div class="content">
-			<p class="notice"><%= notice %></p>
-			<p class="alert"><%= alert %></p>
+			<% if !notice.nil? %>
+			<div class="alert-message success">
+				<a class="close" href="#">×</a>
+				<p><%= notice %></p>
+			</div>
+			<% end %>
+			<% if !alert.nil? %>
+			<div class="alert-message error">
+				<a class="close" href="#">×</a>
+				<p><%= alert%></p>
+			</div>
+			<% end %>
 			<%= yield %>
 		</div>
 	</div>

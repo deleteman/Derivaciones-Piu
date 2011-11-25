@@ -1,0 +1,31 @@
+<div class="page-header">
+	<h1>Examenes</h1>
+</div>
+
+<div class="row">
+	
+	<div class="span10">
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Materia:</b>
+  <%= @exam.materia.nombre %>
+</p>
+
+<p>
+  <b>Fecha:</b>
+  <%= @exam.fecha %>
+</p>
+
+<p>
+  <b>Hora:</b>
+  <%= write_hour_only(@exam.hora) %>
+</p>
+
+
+<%= link_to 'Editar', edit_exam_path(@exam) %> |
+<%= link_to 'Volver a la lista', exams_path %>
+
+</div>
+	</div>

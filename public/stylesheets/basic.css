@@ -54,3 +54,34 @@ border: 0;
 .text-right {
 	text-align:right;
 }
+
+
+/** Derivaciones **/
+.derivacion {
+	border:2px solid black;
+	padding:10px;
+	margin:5px;
+
+}
+
+/** Errores */
+.error h2, .error li{
+	color:white!important;
+
+}
+.content {
+	margin-top:25px;
+}
+
+.date-picker {
+	width:95px;
+}
+
+.fecha-hora-materia {
+	float:left;
+
+}
+.fecha-hora-materia select {
+	width:45px;
+
+}

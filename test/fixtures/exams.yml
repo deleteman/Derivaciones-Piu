@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  materia_id: 1
+  fecha: 2011-11-22
+  hora: 2011-11-22 00:38:51
+
+two:
+  materia_id: 1
+  fecha: 2011-11-22
+  hora: 2011-11-22 00:38:51

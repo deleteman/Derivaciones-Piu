@@ -7,4 +7,14 @@ module ApplicationHelper
 		end
 		link_to_function(name, ("add_field(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
 	end
+
+	def write_hour_only date_val
+		date_val.hour.to_s + ":" + date_val.min.to_s
+	end
+
+	def format_latin_date date_val
+		date_val.strftime('%d/%m/%Y')
+	end
+
+
 end
