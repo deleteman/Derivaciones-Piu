@@ -24,6 +24,8 @@ class ExamsController < ApplicationController
   # GET /exams/new
   # GET /exams/new.xml
   def new
+	
+	@materia_id = params[:mid] || 0
     @exam = Exam.new
 
     respond_to do |format|

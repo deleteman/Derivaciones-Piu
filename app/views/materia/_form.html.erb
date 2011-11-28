@@ -25,20 +25,20 @@
     <%= select("materium", "profesor_id", Profesor.all.collect { |p| [p.nombre, p.id]}) %>
   </div>
 
-  <div class="field">
+  <div class="field clearfix">
     <h2><%= f.label :horarios%></h2>
-	  <div class="clear-fix">
+		  <%= link_to_add_fields "Agregar horario", f, :horario_materia %>
+	  <div class="clearfix">
 		<% f.fields_for :horario_materia do |builder| %>
 		  <%=render 'horarios' , :f => builder%>
 	 	<% end %>
-		  <%= link_to_add_fields "Agregar horario", f, :horario_materia %>
 	  </div>
 
 
   </div>
 
 
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <div class="actions ">
+    <%= f.submit "Guardar", {:class => "btn primary"} %>
   </div>
 <% end %>

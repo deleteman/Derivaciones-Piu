@@ -79,9 +79,19 @@ border: 0;
 
 .fecha-hora-materia {
 	float:left;
+	padding:10px;
 
 }
 .fecha-hora-materia select {
 	width:45px;
+
+}
+
+.hover-date-box {
+	background-color:#1c94c4;
+}
+
+.date-td {
+	font-size:10px!important;
 
 }

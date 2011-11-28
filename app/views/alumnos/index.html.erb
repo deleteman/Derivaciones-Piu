@@ -9,13 +9,14 @@
     <th>Derivaciones</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @alumnos.each do |alumno| %>
   <tr>
     <td><%= alumno.nombre %></td>
     <td><%= alumno.derivacions.collect{ |d| d.materia.nombre }.join("-")%></td>
-    <td><%= link_to 'Ver detalles', alumno %></td>
+    <td><%= link_to 'Ver derivaciones', alumno %></td>
     <td><%= link_to 'Editar', edit_alumno_path(alumno) %></td>
     <td><%= link_to 'Borrar', alumno, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>

@@ -11,8 +11,11 @@
   <tr>
     <th>Nombre</th>
     <th>Nivel</th>
-    <th>Dias</th>
+    <th>Fechas de recuperación</th>
+    <th>Ex&aacute;menes</th>
     <th>Profesor</th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -21,12 +24,14 @@
   <tr>
     <td><%= materium.nombre %></td>
     <td><%= to_ordinal(materium.nivel)%></td>
-    <td><%=materium.horarios.collect {|h| format_latin_date(h.dia) }.join(" - ") %>
+    <td class="date-td"><%=materium.horarios.collect {|h| format_latin_date(h.dia) }.join(" - ") %>
+    <td class="date-td"><%=materium.exams.collect {|h| format_latin_date(h.fecha) }.join(" - ") %>
     <td><%=materium.profesor.nombre if !materium.profesor.nil?%>
 	</td>
-    <td><%= link_to 'Show', materium %></td>
-    <td><%= link_to 'Edit', edit_materium_path(materium) %></td>
-    <td><%= link_to 'Destroy', materium, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to '+Examen', new_exam_path(:mid => materium.id) %></td>
+    <td><%= link_to 'Ver detalles', materium %></td>
+    <td><%= link_to 'Editar', edit_materium_path(materium) %></td>
+    <td><%= link_to 'Borrar', materium, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -15,8 +15,15 @@
 				<li><%=format_latin_date(h.dia)%> desde las <b><%=write_hour_only(h.desde)%></b> hasta las <b><%=write_hour_only(h.hasta)%></b>
 			<% } if !d.materia.nil? %>	
 			</ul>
-			<% if !d.materia.exam.nil? %>
-				Para rendir el examen, deberé presentarme el <%=format_latin_date(d.materia.exam.fecha)%> a las <%=write_hour_only(d.materia.exam.hora)%>
+			<% if !d.materia.exams.nil? && d.materia.exams.size > 0%>
+			<b>Ex&aacute;menes</b>
+			<ul>	
+				<% d.materia.exams.each do |e|
+					if puede_asistir_examen(@alumno, e.fecha)	%>
+						<li>Para rendir el examen, deberé presentarme el <%=format_latin_date(e.fecha)%> a las <%=write_hour_only(e.hora)%></li>
+					<% end %>
+				<% end %>
+			</ul>
 			<% end %>
 		</div>
 	<% } %>

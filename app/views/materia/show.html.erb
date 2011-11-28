@@ -18,13 +18,22 @@
 
 
 	<p>
-		<b>Horarios de la materia</b>
+		<b>Horarios de la recuperación</b>
 		<ul>
 			<% @materium.horarios.each { |h| %>
 			<li><%= h.dia%> desde las <b><%=write_hour_only(h.desde)%>hs</b> hasta las <b><%=write_hour_only(h.hasta)%>hs</b></li>		
 			<% } %>
 		</ul>
 	</p>
+	<p>
+		<b>Fechas de examen</b>
+		<ul>
+			<% @materium.exams.each { |h| %>
+			<li><%= h.fecha %> a las <b><%=write_hour_only(h.hora)%></b>hs</li>
+			<% } %>
+		</ul>
+	</p>
+
 </p>
 
 

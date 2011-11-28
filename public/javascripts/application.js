@@ -3,7 +3,7 @@
 
 function remove_fields(link) {
 
-	$(link).parent("input[type=hidden]").value=1
+	$(link).prev("input[type=hidden]").val(true)
 	$(link).parent(".fields").hide();
 }
 
@@ -11,14 +11,25 @@ function add_field (link, association, content ) {
 	var new_id  = new Date().getTime();
 	var regexp = new RegExp("new_" + association , "g");
 	
-	$(link).parent().prepend(content.replace(regexp, new_id))
+	$(link).parent().append(content.replace(regexp, new_id))
 	$(".date-picker").trigger("set-date-picker");
 }
 
 
 $(document).ready(function() {
 	$(".date-picker").trigger("set-date-picker");
+
+	$(".delete-date-box").live('mouseover', function() {
+		$(this).parent().addClass("hover-date-box");
+	});
+
+	$(".delete-date-box").live('mouseout', function() {
+		$(this).parent().removeClass("hover-date-box");
+	});
+
 });
+
+
 $(".date-picker").live("set-date-picker",function() {
 	$(".date-picker").datepicker({dateFormat:"dd-mm-yy",
 								showOn:"button",
