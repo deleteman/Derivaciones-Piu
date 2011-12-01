@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :nivel%>
-    <%= select_tag("materium[nivel]", '<option value="1">1ero</option><option value="2">2do</option><option value="3">3ero</option>'.html_safe)%>
+    <%= select_tag("materium[nivel]", options_for_select([["1ero", 1],["2do",2], ["3ero",3]], @materium.nivel))%>
   </div>
 
   <div class="field">

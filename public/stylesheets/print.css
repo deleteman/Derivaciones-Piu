@@ -88,7 +88,12 @@ border: 0;
 }
 /** Specific printing styles **/
 @media print {
-.topbar, a {
-	display:none;
-}
+	
+	.topbar, a {
+		display:none;
+	}
+
+	.derivacion {
+		font-size:10px;
+	}
 }

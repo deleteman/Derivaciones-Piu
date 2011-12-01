@@ -55,15 +55,36 @@ class DerivacionsController < ApplicationController
   # POST /derivacions
   # POST /derivacions.xml
   def create
-    @derivacion = Derivacion.new(params[:derivacion])
+	alumno = params[:derivacion][:alumno_id]
+	materias = params[:derivacion][:materias]
+
+    @derivacion = Derivacion.new
+	@derivacion.alumno_id = alumno
+	errors = false
+	if !materias.nil?
+		materias.each { |m|
+			@derivacion = Derivacion.new
+			@derivacion.alumno_id = alumno
+			@derivacion.materia_id = m
+			if !@derivacion.save
+				errors = true
+			end
+		}
+	else
+		errors = true
+		@derivacion.errors[:base] << "Se deben seleccionar materias"
+	end
+
+
 
     respond_to do |format|
-      if @derivacion.save
-        format.html { redirect_to(@derivacion, :notice => 'Derivacion was successfully created.') }
-        format.xml  { render :xml => @derivacion, :status => :created, :location => @derivacion }
+      #if @derivacion.save
+	  if !errors
+        format.html { redirect_to(derivacions_path, :notice => 'El alumno fue correctamente derivado.') }
+        #format.xml  { render :xml => @derivacion, :status => :created, :location => @derivacion }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @derivacion.errors, :status => :unprocessable_entity }
+        format.html { render :action => "new", :status => :unprocessable_entity }
+        #format.xml  { render :xml => @derivacion.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -75,7 +96,7 @@ class DerivacionsController < ApplicationController
 
     respond_to do |format|
       if @derivacion.update_attributes(params[:derivacion])
-        format.html { redirect_to(@derivacion, :notice => 'Derivacion was successfully updated.') }
+        format.html { redirect_to(@derivacion, :notice => 'La derivaci&oacute;n se actualiz&oacute; correctamente.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
