@@ -5,7 +5,7 @@ class MateriaController < ApplicationController
   # GET /materia
   # GET /materia.xml
   def index
-    @materia = Materium.all
+    @materia = Materium.all(:order => ["nombre", "nivel"])
 
     respond_to do |format|
       format.html # index.html.erb
