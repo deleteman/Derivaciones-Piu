@@ -1,6 +1,6 @@
 module AlumnosHelper
 
-	def puede_asistir_examen(alumno, fecha)
+	def puede_asistir_clase(alumno, fecha)
 		cant_derivaciones = alumno.cantidad_derivaciones
 		if cant_derivaciones <= 3
 			if fecha <= Date.new(2011, 12, 31)

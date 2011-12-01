@@ -1,8 +1,8 @@
 <p class="fields fecha-hora-materia">
 	<br>
 <%= f.text_field :dia,{:class => "date-picker"} %><br/>
-<%= f.time_select :desde, {:class => "time-picker" }%><br/>
-<%= f.time_select :hasta, {:class => "time-picker" } %><br/>
+<%= f.time_select :desde, {:class => "time-picker", :minute_step => 15 }%><br/>
+<%= f.time_select :hasta, {:class => "time-picker" , :minute_step => 15} %><br/>
 <%= f.hidden_field :_destroy %>
 <%= link_to_function "Eliminar horario", "remove_fields(this)", {:class => "delete-date-box"} %>
 </p>	
