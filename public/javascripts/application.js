@@ -36,6 +36,7 @@ $(".date-picker").live("set-date-picker",function() {
 								buttonImage: "/images/calendar.gif",
 								buttonImageOnly: true});
 
+	$(".date-picker").datepicker("option", $.datepicker.regional["es"]);
 	$(".time-picker").timepicker();
 
 });
