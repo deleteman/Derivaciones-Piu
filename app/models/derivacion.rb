@@ -14,6 +14,18 @@ class Derivacion < ActiveRecord::Base
 		Materium.find(materia_id)
 	end
 
+	def alumno_nombre
+		if !alumno.nil?
+			alumno.nombre
+		else 
+			""
+		end
+	end
+
+	def alumno_nombre=(value)
+		alumno.nombre=value
+	end
+
 	def horarios
 		materium.horarios
 	end

@@ -5,7 +5,7 @@
 
   <div class="field clearfix">
     <%= f.label :materia_id %><br />
-    <%= select("exam", "materia_id", Materium.all(:order => [:nombre, :nivel]).collect { |p| [p.nombre + " (" + to_ordinal(p.nivel) + ")", p.id]}, :selected => @materia_id) %>
+    <%= select("exam", "materia_id", Materium.all(:order => [:nombre, :nivel]).collect { |p| [p.nombre + " (" + to_ordinal(p.nivel) + ")", p.id]}, :selected => @exam.materia.id) %>
   </div>
   <div class="field clearfix">
     <%= f.label :fecha %><br />
@@ -14,7 +14,7 @@
   </div>
   <div class="field clearfix">
     <%= f.label :hora %><br />
-    <%= f.time_select :hora %>
+    <%= f.time_select :hora , {:class => "time-picker", :minute_step => 15}%>
   </div>
   <div class="actions">
     <%= f.submit "Guardar", {:class => "btn primary"}%>

@@ -25,16 +25,15 @@
 		<th>Nivel</th>
 		<th></th>
 		<th></th>
-		<th></th>
 	  </tr>
 
 	<% @derivacions.each do |derivacion| %>
 	  <tr>
-		<td><%= derivacion.alumno.nombre%></td>
+		<td><%= (!derivacion.alumno.nil?)?derivacion.alumno.nombre : ""%></td>
 		<td><%= derivacion.materia.nombre%></td>
 		<td><%= to_ordinal(derivacion.materia.nivel)%></td>
 		<td><%= link_to 'Ver detalles', derivacion.alumno %></td>
-		<td><%= link_to 'Editar', edit_derivacion_path(derivacion) %></td>
+	
 		<td><%= link_to 'Borrar', derivacion, :confirm => 'Está seguro?', :method => :delete %></td>
 	  </tr>
 	<% end %>

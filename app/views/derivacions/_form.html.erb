@@ -5,14 +5,16 @@
 
   <div class="field">
     <%= f.label :alumno_id %>
-	<%=select("derivacion", "alumno_id", Alumno.all.collect { |a| [a.nombre, a.id]})%>
+	<%#=select("derivacion", "alumno_id", Alumno.all.collect { |a| [a.nombre, a.id]})%>
+	 <%=f.text_field :alumno_nombre %>
   </div>
   <div class="field">
     <%= f.label :materia_id %>
 	  <% 
 materias = Materium.all(:order => [:nombre, :nivel]).collect { |a| [a.nombre + " - " + to_ordinal(a.nivel), a.id]}
+materias_derivadas = @derivacion.alumno.derivacions.collect { |d| d.materia.id } if !@derivacion.alumno.nil?
 %>
-	  <%=select_tag("derivacion[materias]",options_for_select(materias),{:multiple => true, :size => 10}) %>
+	  <%=select_tag("derivacion[materias]",options_for_select(materias,materias_derivadas),{:multiple => true, :size => 10} ) %>
 
   </div>
   <div class="actions">

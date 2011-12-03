@@ -50,21 +50,31 @@ class DerivacionsController < ApplicationController
   # GET /derivacions/1/edit
   def edit
     @derivacion = Derivacion.find(params[:id])
+
   end
 
   # POST /derivacions
   # POST /derivacions.xml
   def create
-	alumno = params[:derivacion][:alumno_id]
+    @derivacion = Derivacion.new
+	n_alumno = params[:derivacion][:alumno_nombre]
+	@derivacion.errors[:base] << "El nombre del alumno no puede estar vacio" if n_alumno.nil?
+	alumno = Alumno.new
+	alumno.nombre = n_alumno
+	if !alumno.save
+		puts "***********Errores************"
+		puts alumno.errors.inspect
+		@derivacion.errors[:alumno] << alumno.errors[:nombre]
+	end
+
 	materias = params[:derivacion][:materias]
 
-    @derivacion = Derivacion.new
-	@derivacion.alumno_id = alumno
+	@derivacion.alumno_id = alumno.id
 	errors = false
 	if !materias.nil?
 		materias.each { |m|
 			@derivacion = Derivacion.new
-			@derivacion.alumno_id = alumno
+			@derivacion.alumno_id = alumno.id
 			@derivacion.materia_id = m
 			if !@derivacion.save
 				errors = true
