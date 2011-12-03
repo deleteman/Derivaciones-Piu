@@ -5,7 +5,7 @@ class AlumnosController < ApplicationController
   # GET /alumnos
   # GET /alumnos.xml
   def index
-    @alumnos = Alumno.all
+    @alumnos = Alumno.all(:order=> :nombre)
 
     respond_to do |format|
       format.html # index.html.erb

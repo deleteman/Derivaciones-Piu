@@ -6,7 +6,7 @@ class Derivacion < ActiveRecord::Base
 
 	def no_se_puede_derivar_mismo_alumno_y_materia
 		if Derivacion.find_all_by_alumno_id_and_materia_id(alumno_id,materia_id).size > 0
-			errors.add(:base, "Este alumno ya esta derivado para esta materia")
+			errors.add(:base, "Este alumno ya esta derivado a #{materia.nombre} (Este error puede ser ignorado)")
 		end
 	end
 

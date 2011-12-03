@@ -40,6 +40,9 @@ class DerivacionsController < ApplicationController
   # GET /derivacions/new.xml
   def new
     @derivacion = Derivacion.new
+	if !params[:alumno_nombre].nil?
+		@derivacion.alumno = Alumno.find_by_nombre(params[:alumno_nombre])
+	end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,20 +61,19 @@ class DerivacionsController < ApplicationController
   def create
     @derivacion = Derivacion.new
 	n_alumno = params[:derivacion][:alumno_nombre]
-	@derivacion.errors[:base] << "El nombre del alumno no puede estar vacio" if n_alumno.nil?
-	alumno = Alumno.new
-	alumno.nombre = n_alumno
-	if !alumno.save
-		puts "***********Errores************"
-		puts alumno.errors.inspect
-		@derivacion.errors[:alumno] << alumno.errors[:nombre]
-	end
-
+	
 	materias = params[:derivacion][:materias]
 
-	@derivacion.alumno_id = alumno.id
 	errors = false
 	if !materias.nil?
+		alumno = Alumno.find_by_nombre(n_alumno)	
+		alumno = Alumno.new if alumno.nil?
+		alumno.nombre = n_alumno
+		if !alumno.save
+			@derivacion.errors[:alumno] << alumno.errors[:nombre]
+		end
+
+		@derivacion.alumno_id = alumno.id
 		materias.each { |m|
 			@derivacion = Derivacion.new
 			@derivacion.alumno_id = alumno.id
@@ -86,6 +88,7 @@ class DerivacionsController < ApplicationController
 	end
 
 
+	@derivacion.errors[:base] << "El nombre del alumno no puede estar vacio" if n_alumno.empty?
 
     respond_to do |format|
       #if @derivacion.save
@@ -93,7 +96,7 @@ class DerivacionsController < ApplicationController
         format.html { redirect_to(derivacions_path, :notice => 'El alumno fue correctamente derivado.') }
         #format.xml  { render :xml => @derivacion, :status => :created, :location => @derivacion }
       else
-        format.html { render :action => "new", :status => :unprocessable_entity }
+        format.html { render :action => "new", :status => :unprocessable_entity, :locals => {:alumno_nombre => "lalal" }}
         #format.xml  { render :xml => @derivacion.errors, :status => :unprocessable_entity }
       end
     end

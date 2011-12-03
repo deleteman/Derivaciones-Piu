@@ -10,13 +10,9 @@
 		
 		<label for="materia">Materia:</label>
 		<%= select("materium", "id", Materium.all(:order => [:nombre, :nivel]).collect { |m| [m.nombre + " (" + to_ordinal(m.nivel) + ")", m.id]})%>
-		<!--<br/>
-		<label for="nivel">Nivel:</label>
-		<%= select_nivel %>
--->
 		<%= submit_tag 'Filtrar', {:class => "btn primary"} %>
 		<% end %>
-<%= label_tag("Filtro: ")%>
+	<%= label_tag("Filtro: ")%>
 	<%= text_field_tag(:filtro, nil,:placeholder => "Escriba aqui para filtrar la lista", :class => "filtro_lista") %>
 
 	</p>
