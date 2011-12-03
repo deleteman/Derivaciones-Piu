@@ -3,7 +3,9 @@
 </div>
 
 <div class="row">
-<table class="zebra-striped">
+	<%= label_tag("Filtro: ")%>
+	<%= text_field_tag(:filtro, nil,:placeholder => "Escriba aqui para filtrar la lista", :class => "filtro_lista") %>
+<table class="zebra-striped filtrable">
   <tr>
     <th>Nombre</th>
     <th>Derivaciones</th>
@@ -13,8 +15,8 @@
   </tr>
 
 <% @alumnos.each do |alumno| %>
-  <tr>
-    <td><%= alumno.nombre %></td>
+  <tr class="data">
+    <td class="index"><%= alumno.nombre %></td>
     <td><%= alumno.derivacions.collect{ |d| d.materia.nombre }.join("-")%></td>
     <td><%= link_to 'Ver derivaciones', alumno %></td>
     <td><%= link_to 'Editar', edit_alumno_path(alumno) %></td>

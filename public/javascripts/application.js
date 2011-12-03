@@ -27,7 +27,25 @@ $(document).ready(function() {
 		$(this).parent().removeClass("hover-date-box");
 	});
 
+	$(".filtro_lista").live("change", function() {
+		var lista_filtrable = $(".filtrable");
+		filtrarLista(lista_filtrable, $(this).val());
+	});
+
 });
+
+function filtrarLista(lista, valor) {
+	$("tr.data", lista).each(function() {
+		var container = $(this);
+		$("td.index", container).each(function() {
+			if($(this).html().toLowerCase().indexOf(valor.toLowerCase()) == -1) {
+				container.hide();
+			} else {
+				container.show();
+			}
+		});
+	});
+}
 
 
 $(".date-picker").live("set-date-picker",function() {

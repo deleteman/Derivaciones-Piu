@@ -16,9 +16,12 @@
 -->
 		<%= submit_tag 'Filtrar', {:class => "btn primary"} %>
 		<% end %>
+<%= label_tag("Filtro: ")%>
+	<%= text_field_tag(:filtro, nil,:placeholder => "Escriba aqui para filtrar la lista", :class => "filtro_lista") %>
+
 	</p>
 <% if @derivacions.size > 0 %>
-	<table class="zebra-striped">
+	<table class="zebra-striped filtrable">
 	  <tr>
 		<th>Alumno</th>
 		<th>Materia</th>
@@ -28,8 +31,8 @@
 	  </tr>
 
 	<% @derivacions.each do |derivacion| %>
-	  <tr>
-		<td><%= (!derivacion.alumno.nil?)?derivacion.alumno.nombre : ""%></td>
+	  <tr class="data">
+		<td class="index"><%= (!derivacion.alumno.nil?)?derivacion.alumno.nombre : ""%></td>
 		<td><%= derivacion.materia.nombre%></td>
 		<td><%= to_ordinal(derivacion.materia.nivel)%></td>
 		<td><%= link_to 'Ver detalles', derivacion.alumno %></td>
