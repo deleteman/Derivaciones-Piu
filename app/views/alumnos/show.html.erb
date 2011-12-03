@@ -9,7 +9,7 @@
 	<% 
 	@alumno.derivacions.each {|d| %>
 		<div class="derivacion">
-			Para preparar el examen de la materia <b><%=d.materia.nombre%></b> de <%=to_ordinal(d.materia.nivel)%> debo asistir los siguientes días (con mi cédula de identidad):<br/>
+			Para preparar el examen de la materia <b><%=d.materia.nombre%></b> de <%=to_ordinal(d.materia.nivel)%> debo asistir los siguientes días :<br/>
 			<ul>	
 			<% d.materia.horarios.each { |h|  %>
 				<% if puede_asistir_clase(@alumno, h.dia) %>
@@ -22,7 +22,7 @@
 			<ul>	
 				<% d.materia.exams.each do |e|
 					if puede_asistir_clase(@alumno, e.fecha)	%>
-						<li>Para rendir el examen, deberé presentarme el <%=format_latin_date(e.fecha)%> a las <%=write_hour_only(e.hora)%></li>
+						<li>Para rendir el examen, deberé presentarme el <%=format_latin_date(e.fecha)%> a las <%=write_hour_only(e.hora) %> con mi cédula de identidad.</li>
 					<% end %>
 				<% end %>
 			</ul>

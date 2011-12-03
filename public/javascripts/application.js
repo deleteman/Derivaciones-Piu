@@ -32,7 +32,23 @@ $(document).ready(function() {
 		filtrarLista(lista_filtrable, $(this).val());
 	});
 
+	$("#multiple-materias").live("change", function() {
+		updateMateriasSeleccionadas($(this));
+	});
+
 });
+
+function updateMateriasSeleccionadas(select) {
+		var opciones = $('option:selected', select);
+		$("#derivaciones-seleccionadas li").remove();
+		$("#derivaciones-seleccionadas").append("<li class=\"title\">Materias seleccionadas</li>");
+		opciones.each(function(){
+			$("#derivaciones-seleccionadas").append("<li>" + $(this).text() + "</li>");
+		});
+
+		$("#derivaciones-seleccionadas").append("<li>Total de materias: <b>" + opciones.length + "</b></li>");
+
+}
 
 function filtrarLista(lista, valor) {
 	$("tr.data", lista).each(function() {
