@@ -25,6 +25,7 @@ Derivaciones::Application.routes.draw do
   match 'sinaprovar' => 'users#index'
   match 'user/edit.:id' => 'users#edit'
   match 'user/approve/:id' => 'users#approve'
+  match 'derivaciones/grupales' => 'derivacions#ver_grupales'
 
 
 	resource :user

@@ -87,7 +87,30 @@ border: 0;
 
 }
 /** Specific printing styles **/
+
+@media all
+{
+	.page-break	{ display:none; }
+}
+
 @media print {
+	.page-break	{ display:block; page-break-before:always; }
+	body {
+		padding:0;
+	}
+
+	.page-header {
+		display: none;
+	}
+
+	p {
+		padding:0;
+		margin:0;
+	}
+	.content {
+		margin-top:0;
+		padding-top:0;
+	}
 	
 	.topbar, a {
 		display:none;

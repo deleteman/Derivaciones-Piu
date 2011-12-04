@@ -36,6 +36,11 @@ $(document).ready(function() {
 		updateMateriasSeleccionadas($(this));
 	});
 
+	$("#select_all").live("click", function() {
+		var checked = $(this).attr("checked") || false;
+		$("input:checkbox:visible").attr("checked", checked);
+	});
+
 });
 
 function updateMateriasSeleccionadas(select) {

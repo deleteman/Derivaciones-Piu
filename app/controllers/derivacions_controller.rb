@@ -2,6 +2,20 @@ class DerivacionsController < ApplicationController
 
   before_filter :authenticate_user!
 
+
+  def ver_grupales
+	  ids = params[:ids]
+
+	  @alumnos = Array.new
+	  if !ids.nil?
+		  ids.each do |i|
+		  	@alumnos << Alumno.find(i)
+		  end
+	  end
+
+  end
+
+
   # GET /derivacions
   # GET /derivacions.xml
   def index
@@ -56,6 +70,7 @@ class DerivacionsController < ApplicationController
 
   end
 
+  
   # POST /derivacions
   # POST /derivacions.xml
   def create

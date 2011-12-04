@@ -5,8 +5,12 @@
 <div class="row">
 	<%= label_tag("Filtro: ")%>
 	<%= text_field_tag(:filtro, nil,:placeholder => "Escriba aqui para filtrar la lista", :class => "filtro_lista") %>
+	<%= form_tag('derivaciones/grupales', :method => :post) do %>
+	<br/>
+	<input type="submit" value="Ver derivaciones seleccionadas" />
 <table class="zebra-striped filtrable">
   <tr>
+	<td ><%= check_box_tag("select_all")%></td>
     <th>Nombre</th>
     <th>Derivaciones</th>
     <th></th>
@@ -17,6 +21,7 @@
 
 <% @alumnos.each do |alumno| %>
   <tr class="data">
+	  <td ><%= check_box_tag("ids[]", alumno.id)%></td>
     <td class="index"><%= alumno.nombre %></td>
     <td><%= alumno.derivacions.collect{ |d| d.materia.nombre }.join("-")%></td>
 	<td><%= link_to '+Derivación', new_derivacion_path(:alumno_nombre => alumno.nombre) %></td>
@@ -26,7 +31,7 @@
   </tr>
 <% end %>
 </table>
-
+<% end %>
 <br />
 
 

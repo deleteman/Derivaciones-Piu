@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<div class="page-header">
+	<h1>Derivaciones</h1>
+</div>
+
+<%
+@alumnos.each do |alumno|
+	%>
+<div class="row">
+<p>
+
+<h2><%= alumno.nombre %></h2>
+	<% 
+	alumno.derivacions.each {|d| %>
+		<div class="derivacion">
+			Para preparar el examen de la materia <b><%=d.materia.nombre%></b> de <%=to_ordinal(d.materia.nivel)%> debo asistir los siguientes días :<br/>
+			<ul>	
+			<% d.materia.horarios.each { |h|  %>
+				<% if puede_asistir_clase(alumno, h.dia) %>
+					<li><%=format_latin_date(h.dia)%> desde las <b><%=write_hour_only(h.desde)%></b> hasta las <b><%=write_hour_only(h.hasta)%></b>
+				<% end %>
+			<% } if !d.materia.nil? %>	
+			</ul>
+			<% if !d.materia.exams.nil? && d.materia.exams.size > 0%>
+			<b>Ex&aacute;menes</b>
+			<ul>	
+				<% d.materia.exams.each do |e|
+					if puede_asistir_clase(alumno, e.fecha)	%>
+						<li>Para rendir el examen, deberé presentarme el <%=format_latin_date(e.fecha)%> a las <%=write_hour_only(e.hora) %> con mi cédula de identidad.</li>
+					<% end %>
+				<% end %>
+			</ul>
+			<% end %>
+		</div>
+	<% } %>
+
+</p>
+
+</div>
+<div class="page-break"></div>
+<% end %>
+
+<%= link_to 'Volver al listado', alumnos_path %>
