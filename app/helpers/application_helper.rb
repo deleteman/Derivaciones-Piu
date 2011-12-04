@@ -17,4 +17,8 @@ module ApplicationHelper
 	end
 
 
+	def filtro_por_texto
+		"#{label_tag("Filtro: ")} #{text_field_tag(:filtro, nil,:placeholder => "Escriba aqui para filtrar la lista", :class => "filtro_lista") }".html_safe
+
+	end
 end

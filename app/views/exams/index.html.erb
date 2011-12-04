@@ -3,9 +3,9 @@
 <small><%= link_to 'Agregar Examen + ', new_exam_path %></small>
 </h1>
 </div>
-
+<%= filtro_por_texto %>
 <div class="row">
-<table class="zebra-striped">
+<table class="zebra-striped filtrable">
   <tr>
     <th>Materia</th>
     <th>Fecha</th>
@@ -16,9 +16,9 @@
   </tr>
 
 <% @exams.each do |exam| %>
-  <tr>
-    <td><%= exam.materia.nombre + " (" + (to_ordinal(exam.materia.nivel)) + ")" %></td>
-    <td><%= format_latin_date(exam.fecha) %></td>
+  <tr class="data">
+    <td class="index"><%= exam.materia.nombre + " (" + (to_ordinal(exam.materia.nivel)) + ")" %></td>
+    <td class="index"><%= format_latin_date(exam.fecha) %></td>
     <td><%= write_hour_only(exam.hora) %></td>
     <td><%= link_to 'Ver', exam %></td>
     <td><%= link_to 'Editar', edit_exam_path(exam) %></td>
