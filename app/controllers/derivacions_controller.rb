@@ -19,19 +19,17 @@ class DerivacionsController < ApplicationController
   # GET /derivacions
   # GET /derivacions.xml
   def index
-
-
+	@filtrado = false
 	if !params[:materium].nil?
 		if !params[:materium][:id].nil?
-			#@derivacions = Derivacion.find_all_by_nivel(params[:nivel])
+			@filtrado = true
 			@materium = Materium.find(params[:materium][:id])
+			@derivacions = Derivacion.joins("join materia on materia.id = derivacions.materia_id").joins("join alumnos on alumnos.id = derivacions.alumno_id").where(:materia_id => params[:materium][:id]).order("alumnos.nombre")
 
-			@derivacions = Derivacion.joins("join materia on materia.id = derivacions.materia_id").where(:materia_id => params[:materium][:id])
 		end
 	else
     	@derivacions = Derivacion.all
 	end
-	  
 
     respond_to do |format|
       format.html # index.html.erb

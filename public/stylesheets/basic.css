@@ -121,3 +121,13 @@ border: 0;
     margin: 0;
     padding: 0
 }
+
+.attendance-sheet {
+	display: none;
+	border:1px solid black;
+	text-align: center;
+}
+
+#ver-detalles {
+	display:none;
+}

@@ -88,6 +88,17 @@ border: 0;
 }
 /** Specific printing styles **/
 
+
+.attendance-sheet {
+	display: none;
+	border:1px solid black;
+	text-align: center;
+}
+
+#ver-detalles {
+	display:none;
+}
+
 @media all
 {
 	.page-break	{ display:none; }
@@ -113,10 +124,16 @@ border: 0;
 	}
 	
 	.topbar, a {
-		display:none;
+		display:none !important;
 	}
 
 	.derivacion {
 		font-size:10px;
+	}
+	input, .no-imprimir {
+		display:none;
+	}
+	.row label {
+		display:none;
 	}
 }

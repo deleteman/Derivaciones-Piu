@@ -41,6 +41,23 @@ $(document).ready(function() {
 		$("input:checkbox:visible").attr("checked", checked);
 	});
 
+	$("#ver-attendance").live("click", function() {
+		$(".general-view").hide();
+		$(".attendance-sheet").show();
+		$(this).hide();
+		$("#ver-detalles").show();
+		return false;
+	});
+
+	$("#ver-detalles").live("click", function() {
+		$(".general-view").show();
+		$(".attendance-sheet").hide();
+		$(this).hide();
+		$("#ver-attendance").show();
+		return false;
+	});
+
+
 });
 
 function updateMateriasSeleccionadas(select) {

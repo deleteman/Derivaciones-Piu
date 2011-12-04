@@ -5,35 +5,44 @@
 </div>
 
 <div class="row">
-	<p>
-		<%= form_tag "", :method => :post do %>
-		
-		<label for="materia">Materia:</label>
-		<%= select("materium", "id", Materium.all(:order => [:nombre, :nivel]).collect { |m| [m.nombre + " (" + to_ordinal(m.nivel) + ")", m.id]})%>
-		<%= submit_tag 'Filtrar', {:class => "btn primary"} %>
+	<p class="no-imprimir">
+		<%= form_tag "", :method => :post, :class => "no-imprimir" do %>
+			<label for="materia">Materia:</label>
+			<%= select("materium", "id", Materium.all(:order => [:nombre, :nivel]).collect { |m| [m.nombre + " (" + to_ordinal(m.nivel) + ")", m.id]})%>
+			<%= submit_tag 'Filtrar', {:class => "btn primary"} %>
 		<% end %>
-	<%= label_tag("Filtro: ")%>
-	<%= text_field_tag(:filtro, nil,:placeholder => "Escriba aqui para filtrar la lista", :class => "filtro_lista") %>
-
+		<%= label_tag("Filtro: ")%>
+		<%= text_field_tag(:filtro, nil,:placeholder => "Escriba aqui para filtrar la lista", :class => "filtro_lista") %>
+		<br />
+		<%= link_to "Ver lista de asistencia", "#",  {:id => "ver-attendance", :class => "no-imprimir"} %>
+		<%= link_to "Ver listado con detalles","#",  {:id => "ver-detalles", :class => "no-imprimir"} %>
 	</p>
 <% if @derivacions.size > 0 %>
 	<table class="zebra-striped filtrable">
 	  <tr>
 		<th>Alumno</th>
-		<th>Materia</th>
-		<th>Nivel</th>
-		<th></th>
-		<th></th>
+		<th class="general-view">Materia</th>
+		<th class="general-view">Nivel</th>
+		<th class="general-view"></th>
+		<th class="general-view"></th>
+		<% if @filtrado 
+			@derivacions.first.materia.horarios.each do |h| %>
+				<th class="attendance-sheet"><%= format_latin_date(h.dia) %></th>
+			<% end %>
+		<% end %>
 	  </tr>
 
 	<% @derivacions.each do |derivacion| %>
 	  <tr class="data">
 		<td class="index"><%= (!derivacion.alumno.nil?)?derivacion.alumno.nombre : ""%></td>
-		<td><%= derivacion.materia.nombre%></td>
-		<td><%= to_ordinal(derivacion.materia.nivel)%></td>
-		<td><%= link_to 'Ver detalles', derivacion.alumno %></td>
-	
-		<td><%= link_to 'Borrar', derivacion, :confirm => 'Está seguro?', :method => :delete %></td>
+		<td class="general-view"><%= derivacion.materia.nombre%></td>
+		<td class="general-view"><%= to_ordinal(derivacion.materia.nivel)%></td>
+		<td class="general-view"><%= link_to 'Ver detalles', derivacion.alumno %></td>
+		<td class="general-view"><%= link_to 'Borrar', derivacion, :confirm => 'Está seguro?', :method => :delete %></td>
+		<% derivacion.materia.horarios.size.times do  %>
+			<td class="attendance-sheet"></td>
+		<% end %>
+			
 	  </tr>
 	<% end %>
 	</table>
