@@ -53,13 +53,15 @@ function updateMateriasSeleccionadas(select) {
 function filtrarLista(lista, valor) {
 	$("tr.data", lista).each(function() {
 		var container = $(this);
+		var index_value = "";
 		$("td.index", container).each(function() {
-			if($(this).html().toLowerCase().indexOf(valor.toLowerCase()) == -1) {
-				container.hide();
-			} else {
-				container.show();
-			}
+			index_value += $(this).html() + " ";	
 		});
+		if(index_value.toLowerCase().indexOf(valor.toLowerCase()) == -1) {
+			container.hide();
+		} else {
+			container.show();
+		}
 	});
 }
 

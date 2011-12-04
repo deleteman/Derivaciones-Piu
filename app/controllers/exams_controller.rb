@@ -2,7 +2,14 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.xml
   def index
-    @exams = Exam.all
+    examenes = Exam.find(:all, :joins => :materium, :order => "materia.nombre, materia.nivel")
+
+	@exams = Array.new 
+	examenes.each do |e| 
+		puts e.materia.nombre 
+		@exams << e
+	end
+
 
     respond_to do |format|
       format.html # index.html.erb
