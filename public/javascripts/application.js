@@ -73,6 +73,8 @@ function updateMateriasSeleccionadas(select) {
 }
 
 function filtrarLista(lista, valor) {
+	$("#loader").fadeIn();
+	$("#loader .text").text("Buscando...");
 	$("tr.data", lista).each(function() {
 		var container = $(this);
 		var index_value = "";
@@ -85,6 +87,7 @@ function filtrarLista(lista, valor) {
 			container.show();
 		}
 	});
+	$("#loader").fadeOut();
 }
 
 

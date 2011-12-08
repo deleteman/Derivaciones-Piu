@@ -44,6 +44,9 @@ class ExamsController < ApplicationController
   # GET /exams/1/edit
   def edit
     @exam = Exam.find(params[:id])
+	@materia_id = @exam.materia.id if !@exam.nil?
+	puts "**********************************"
+	puts @materia_id
   end
 
   # POST /exams

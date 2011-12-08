@@ -131,3 +131,21 @@ border: 0;
 #ver-detalles {
 	display:none;
 }
+
+#loader {
+	display: none;
+	background: none repeat scroll 0 0 white;
+    border: 3px solid #404040;
+    box-shadow: 2px 2px #404040;
+    left: 50%;
+    margin-left: -100px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    width: 200px;
+}
+
+#loader .text {
+	padding:10px;
+	position:absolute;
+}
