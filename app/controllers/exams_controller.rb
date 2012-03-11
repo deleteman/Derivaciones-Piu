@@ -2,7 +2,8 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.xml
   def index
-    examenes = Exam.find(:all, :joins => :materium, :order => "materia.nombre, materia.nivel")
+#    examenes = Exam.find(:all, :joins => :materium, :order => "materia.nombre, materia.nivel")
+    examenes = Exam.where(:year => session[:current_year]).joins(:materium).order("materia.nombre, materia.nivel")
 
 	@exams = Array.new 
 	examenes.each do |e| 
@@ -44,9 +45,7 @@ class ExamsController < ApplicationController
   # GET /exams/1/edit
   def edit
     @exam = Exam.find(params[:id])
-	@materia_id = @exam.materia.id if !@exam.nil?
-	puts "**********************************"
-	puts @materia_id
+    @materia_id = @exam.materia.id if !@exam.nil?	
   end
 
   # POST /exams

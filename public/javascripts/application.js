@@ -57,6 +57,9 @@ $(document).ready(function() {
 		return false;
 	});
 
+    $("#year_selector").change(function() {
+	window.location = '/user/switch_year?year=' + $(this).val();
+    } );
 
 });
 

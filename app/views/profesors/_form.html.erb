@@ -2,7 +2,7 @@
   <% if @profesor.errors.any? %>
 	<%= render :partial => 'layouts/error_list',:locals => {:errors => @profesor.errors} %>
       <% end %>
-
+      <%= hidden_field_tag "profesor[year]", Date.today.year %>
   <div class="field">
     <%= f.label :nombre %>
     <%= f.text_field :nombre %>

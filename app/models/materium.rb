@@ -9,4 +9,8 @@ class Materium < ActiveRecord::Base
 	def horarios
 		@horarios = HorarioMaterium.find_all_by_materia_id id
 	end
+        
+        def self.by_year(year)
+          where(:year => year).order([:nombre, :nivel])
+        end
 end

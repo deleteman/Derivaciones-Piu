@@ -5,7 +5,7 @@ class AlumnosController < ApplicationController
   # GET /alumnos
   # GET /alumnos.xml
   def index
-    @alumnos = Alumno.all(:order=> :nombre)
+    @alumnos = Alumno.where(:year => session[:current_year]).order(:nombre)
 
     respond_to do |format|
       format.html # index.html.erb

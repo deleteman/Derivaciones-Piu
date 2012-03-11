@@ -5,7 +5,7 @@ class MateriaController < ApplicationController
   # GET /materia
   # GET /materia.xml
   def index
-    @materia = Materium.all(:order => ["nombre", "nivel"])
+    @materia = Materium.where(:year => session[:current_year]).order(:nombre, :nivel)
 
     respond_to do |format|
       format.html # index.html.erb

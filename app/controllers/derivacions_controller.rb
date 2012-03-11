@@ -24,11 +24,11 @@ class DerivacionsController < ApplicationController
 		if !params[:materium][:id].nil?
 			@filtrado = true
 			@materium = Materium.find(params[:materium][:id])
-			@derivacions = Derivacion.joins("join materia on materia.id = derivacions.materia_id").joins("join alumnos on alumnos.id = derivacions.alumno_id").where(:materia_id => params[:materium][:id]).order("alumnos.nombre")
+			@derivacions = Derivacion.joins("join materia on materia.id = derivacions.materia_id").joins("join alumnos on alumnos.id = derivacions.alumno_id").where(:materia_id => params[:materium][:id], :year => session[:current_year]).order("alumnos.nombre")
 
 		end
 	else
-    	@derivacions = Derivacion.all
+    	@derivacions = Derivacion.where(:year => session[:current_year])
 	end
 
     respond_to do |format|
@@ -53,7 +53,7 @@ class DerivacionsController < ApplicationController
   def new
     @derivacion = Derivacion.new
 	if !params[:alumno_nombre].nil?
-		@derivacion.alumno = Alumno.find_by_nombre(params[:alumno_nombre])
+		@derivacion.alumno = Alumno.find_by_nombre_and_year(params[:alumno_nombre],session[:current_year])
 	end
 
     respond_to do |format|
@@ -79,18 +79,21 @@ class DerivacionsController < ApplicationController
 
 	errors = false
 	if !materias.nil?
-		alumno = Alumno.find_by_nombre(n_alumno)	
+		alumno = Alumno.find_by_nombre_and_year(n_alumno,session[:current_year])	
 		alumno = Alumno.new if alumno.nil?
 		alumno.nombre = n_alumno
+          alumno.year = session[:current_year]
 		if !alumno.save
 			@derivacion.errors[:alumno] << alumno.errors[:nombre]
 		end
 
 		@derivacion.alumno_id = alumno.id
-		materias.each { |m|
+          @derivacion.year = session[:current_year]
+                materias.each { |m|
 			@derivacion = Derivacion.new
 			@derivacion.alumno_id = alumno.id
 			@derivacion.materia_id = m
+                        @derivacion.year = session[:current_year]
 			if !@derivacion.save
 				errors = true
 			end

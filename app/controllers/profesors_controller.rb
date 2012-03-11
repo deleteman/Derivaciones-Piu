@@ -5,7 +5,7 @@ class ProfesorsController < ApplicationController
   # GET /profesors
   # GET /profesors.xml
   def index
-    @profesors = Profesor.all
+    @profesors = Profesor.where(:year => session[:current_year])
 
     respond_to do |format|
       format.html # index.html.erb

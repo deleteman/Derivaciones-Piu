@@ -81,6 +81,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def switch_year 
+    session[:current_year] = params[:year]
+
+    respond_to do |format|
+      format.html { redirect_to(request.referer) }
+    end 
+  end
 
   def approve 
 	  @user = User.find(params[:id])

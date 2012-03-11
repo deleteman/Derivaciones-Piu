@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Derivaciones</title>
-  <%= stylesheet_link_tag 'print',:media => :print %>
-  <%= stylesheet_link_tag :all, :media => :screen %>
-  <%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.16.custom' , :media => :screen%>
-  <%= javascript_include_tag :defaults, 'jquery-ui', 'jquery-ui-timepicker-addon', 'jquery.ui.datepicker-es' %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-	<div id="loader"><span class="img-loader"><img src="/images/ajax-loader.gif" /></span><span class="text"></span></div>
-		<div class="topbar" >
-			<div class="fill">
-				<div class="container" >
-					<a class="brand" href="/" >Derivaciones P.I.U.</a>
-			<% if user_signed_in? %>
-					<ul class="nav">
+  <head>
+    <title>Derivaciones</title>
+    <%= stylesheet_link_tag 'print',:media => :print %>
+    <%= stylesheet_link_tag :all, :media => :screen %>
+    <%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.16.custom' , :media => :screen%>
+    <%= javascript_include_tag :defaults, 'jquery-ui', 'jquery-ui-timepicker-addon', 'jquery.ui.datepicker-es' %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div id="loader"><span class="img-loader"><img src="/images/ajax-loader.gif" /></span><span class="text"></span></div>
+    <div class="topbar" >
+      <div class="fill">
+	<div class="container" >
+	  <a class="brand" href="/" >Derivaciones P.I.U.</a>
+	  <% if user_signed_in? %>
+	  <ul class="nav">
 
-						<li><a href="/alumnos">Alumnos</a></li>
-						<li><a href="/derivaciones">Derivaciones</a></li>
-						<li><a href="/profesores">Profesores</a></li>
-						<li><a href="/materias">Materias</a></li>
-						<li><a href="/exams">Examenes</a></li>
-						<li>
-							<%= link_to " - Salir", destroy_user_session_path, {:method => :delete, :class => "logout-link"}%>
-							
-						</li>
-					</ul>
-			<% else  %>
-					<span class="copyright">Trabajo realizado por <a href="http://about.me/fernandodoglio" target="_blank">Fernando Doglio</a> para el Liceo N2, La Paz, Canelones</span>
-			<% end  %>
-				</div>
-			</div>
-		</div>
-	<div class="container">
-		<div class="content">
-			<% if !notice.nil? %>
-			<div class="alert-message success">
-				<a class="close" href="#">×</a>
-				<p><%= notice %></p>
-			</div>
-			<% end %>
-			<% if !alert.nil? %>
-			<div class="alert-message error">
-				<a class="close" href="#">×</a>
-				<p><%= alert%></p>
-			</div>
-			<% end %>
-			<%= yield %>
-		</div>
+	    <li><a href="/alumnos">Alumnos</a></li>
+	    <li><a href="/derivaciones">Derivaciones</a></li>
+	    <li><a href="/profesores">Profesores</a></li>
+	    <li><a href="/materias">Materias</a></li>
+	    <li><a href="/exams">Examenes</a></li>
+	    <li><%=select_tag "year",options_for_select(2011..Date.today.year, session[:current_year]),{:id => "year_selector"}%></li>
+	    <li>
+	      <%= link_to " - Salir", destroy_user_session_path, {:method => :delete, :class => "logout-link"}%>
+	      
+	    </li>
+	  </ul>
+	  <% else  %>
+	  <span class="copyright">Trabajo realizado por <a href="http://about.me/fernandodoglio" target="_blank">Fernando Doglio</a> para el Liceo N2, La Paz, Canelones</span>
+	  <% end  %>
 	</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="content">
+	<% if !notice.nil? %>
+	<div class="alert-message success">
+	  <a class="close" href="#">×</a>
+	  <p><%= notice %></p>
+	</div>
+	<% end %>
+	<% if !alert.nil? %>
+	<div class="alert-message error">
+	  <a class="close" href="#">×</a>
+	  <p><%= alert%></p>
+	</div>
+	<% end %>
+	<%= yield %>
+      </div>
+    </div>
 
-</body>
+  </body>
 </html>

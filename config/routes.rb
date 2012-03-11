@@ -26,7 +26,7 @@ Derivaciones::Application.routes.draw do
   match 'user/edit.:id' => 'users#edit'
   match 'user/approve/:id' => 'users#approve'
   match 'derivaciones/grupales' => 'derivacions#ver_grupales'
-
+  match 'user/switch_year' => 'users#switch_year'
 
 	resource :user
   # Sample of regular route:

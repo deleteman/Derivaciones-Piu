@@ -8,7 +8,7 @@
 	<p class="no-imprimir">
 		<%= form_tag "", :method => :post, :class => "no-imprimir" do %>
 			<label for="materia">Materia:</label>
-			<%= select("materium", "id", Materium.all(:order => [:nombre, :nivel]).collect { |m| [m.nombre + " (" + to_ordinal(m.nivel) + ")", m.id]})%>
+			<%= select("materium", "id", Materium.by_year(session[:current_year]).collect { |m| [m.nombre + " (" + to_ordinal(m.nivel) + ")", m.id]})%>
 			<%= submit_tag 'Filtrar', {:class => "btn primary"} %>
 		<% end %>
 		<%= label_tag("Filtro: ")%>
